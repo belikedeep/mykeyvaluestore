@@ -1,16 +1,16 @@
 {
-  "name": "mykvstore",
+  "name": "kvstore",
   "version": "1.0.0",
   "description": "A simple key-value store CLI tool",
-  "main": "mkvs.js",
+  "main": "kvs.js",
   "bin": {
-    "mkvs": "mkvs.js"
+    "kvs": "kvs.js"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [
-    "mkvs"
+    "kvs"
   ],
   "author": "Deepak Mardi",
   "license": "ISC",
