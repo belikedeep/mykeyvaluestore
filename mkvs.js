@@ -1,7 +1,10 @@
+#!/usr/bin/env node
+
 const fs = require("fs");
 const path = require("path");
 
-const ENV_FILE_PATH = path.join(__dirname, ".env");
+const CURRENT_DIR = process.cwd();
+const ENV_FILE_PATH = path.join(CURRENT_DIR, ".env");
 
 const command = process.argv[2];
 const key = process.argv[3];
