@@ -1,5 +1,5 @@
 {
-  "name": "kvstore",
+  "name": "mykvstore",
   "version": "1.0.0",
   "description": "A simple key-value store CLI tool",
   "main": "kvs.js",
