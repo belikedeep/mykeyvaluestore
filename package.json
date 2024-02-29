@@ -1,0 +1,22 @@
+{
+  "name": "my-key-value-store",
+  "version": "1.0.0",
+  "description": "A simple key-value store CLI tool",
+  "main": "mkvs.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/deepakmardii/mykeyvaluestore.git"
+  },
+  "keywords": [
+    "mkvs"
+  ],
+  "author": "Deepak Mardi",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/deepakmardii/mykeyvaluestore/issues"
+  },
+  "homepage": "https://github.com/deepakmardii/mykeyvaluestore#readme"
+}
