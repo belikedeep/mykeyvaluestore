@@ -13,7 +13,7 @@
     "kvs"
   ],
   "author": "Deepak Mardi",
-  "license": "ISC",
+  "license": "MIT",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/deepakmardii/mykeyvaluestore.git"

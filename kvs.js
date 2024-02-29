@@ -17,51 +17,58 @@ function createEnvFile() {
 }
 
 function addKeyValue(key, value) {
-  if (!key || !value) {
-    console.log("Please provide both key and value.");
-    return;
-  }
+  const envContent = fs.readFileSync(ENV_FILE_PATH, "utf8");
+  const keyValuePairs = envContent.split("\n");
+  let keyExists = false;
 
-  let envData = fs.readFileSync(ENV_FILE_PATH, "utf8");
-  const lines = envData.split("\n");
-  for (let line of lines) {
-    const [k, v] = line.split("=");
+  // Check if the key already exists
+  for (let i = 0; i < keyValuePairs.length; i++) {
+    const pair = keyValuePairs[i];
+    const [k, v] = pair.split("=");
     if (k === key) {
-      console.log(`Key '${key}' already exists.`);
-      return;
+      keyExists = true;
+      break;
     }
   }
 
-  envData += `${key}="${value}"\n`;
-
-  fs.writeFileSync(ENV_FILE_PATH, envData);
-  console.log(`Key '${key}' added with value '${value}'.`);
+  if (keyExists) {
+    console.log(
+      `Key '${key}' already exists. Use 'edit' command to modify its value.`
+    );
+  } else {
+    // Append the key-value pair to .env file
+    const keyValue = `${key}=${value}\n`;
+    fs.appendFileSync(ENV_FILE_PATH, keyValue);
+    console.log(`Added key '${key}' with value '${value}'.`);
+  }
 }
 
 function removeKey(key) {
-  let envData = fs.readFileSync(ENV_FILE_PATH, "utf8");
-  const lines = envData.split("\n");
-  const newData = lines
-    .filter((line) => {
-      const parts = line.split("=");
-      return parts[0] !== key;
-    })
-    .join("\n");
+  // Read .env file
+  let envContent = fs.readFileSync(ENV_FILE_PATH, "utf8");
 
-  fs.writeFileSync(ENV_FILE_PATH, newData);
-  console.log(`Key '${key}' removed.`);
+  // Remove the line containing the key
+  envContent = envContent.replace(new RegExp(`${key}=.*\n`), "");
+
+  // Write back to .env file
+  fs.writeFileSync(ENV_FILE_PATH, envContent);
+
+  console.log(`Removed key '${key}'.`);
 }
 
 function getValue(key) {
-  let envData = fs.readFileSync(ENV_FILE_PATH, "utf8");
-  const lines = envData.split("\n");
-  for (let line of lines) {
-    const [k, v] = line.split("=");
+  const envContent = fs.readFileSync(ENV_FILE_PATH, "utf8");
+  const keyValuePairs = envContent.split("\n");
+
+  for (let i = 0; i < keyValuePairs.length; i++) {
+    const pair = keyValuePairs[i];
+    const [k, v] = pair.split("=");
     if (k === key) {
-      console.log(`Value for key '${key}': ${v}`);
+      console.log(`Value for key '${key}' is '${v}'.`);
       return;
     }
   }
+
   console.log(`Key '${key}' not found.`);
 }
 
@@ -78,5 +85,5 @@ switch (command) {
     getValue(key);
     break;
   default:
-    console.log("Invalid command. Please use one of: add, remove, get.");
+    console.log("Invalid command. Please use one of: add, remove, get, edit.");
 }
