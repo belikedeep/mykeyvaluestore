@@ -10,6 +10,12 @@ To install the package globally, you can use npm:
 npm install -g mykvstore
 ```
 
+or
+
+```bash
+sudo npm install -g mykvstore
+```
+
 ## Usage
 
 Once installed, you can use the mkvs command to interact with the key-value store. Here are some example commands:
